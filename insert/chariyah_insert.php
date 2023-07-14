@@ -6,7 +6,9 @@ if (isset($_POST['insert_chariyah'])) {
     $phone = $_POST['phone'];
     $type=$_POST['Type'];
     $date=$_POST['DonateDate'];
+    $district=$_POST['district'];
     $amount=$_POST['Amount'];
+    // $description=$_POST['ddiscription'];
     $description=$_POST['Description'];
     // $userid=$_POST['UserID'];
    // $userid=$_POST['UserID'];
@@ -14,7 +16,7 @@ if (isset($_POST['insert_chariyah'])) {
   
    
 
-    $insert_chariyah = mysqli_query($conection,"INSERT INTO `chariyah`(`Name`, `Phone`, `Type`, `DonateDate`, `Amount`, `Description`) VALUES ('$fname',' $phone',' $type','$date',' $amount','$description')");
+    $insert_chariyah = mysqli_query($conection,"INSERT INTO `chariyah`(`Name`, `Phone`, `Type`, `DonateDate`,`District`, `Amount`, `Description`) VALUES ('$fname',' $phone',' $type','$date', '$district' ,'$amount',' $description')");
    
     if($insert_chariyah){
         echo" <script>alert('insert successfully')</script>";

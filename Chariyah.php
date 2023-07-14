@@ -141,6 +141,15 @@ include('src/conection.php');
                          <input type="date" name="DonateDate" id="DonateDate" class="form-control" required>
        </div>
              
+                <label for="Type">District</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+
+                      <span class="input-group-text"><i class="fas fa-thumbs-up"></i></span>
+                    </div>
+                         <input type="text" name="district" id="district" class="form-control" required>
+       </div>
+             
                 <label for="Amount">Amount</label>
                 <div class="input-group ">
                     <div class="input-group-prepend">
@@ -149,6 +158,19 @@ include('src/conection.php');
                     </div>
                         <input type="number" name="Amount" id="Amount" class="form-control" required min="0" step="0.01">
        </div>
+              
+                <!-- <label for="Type">Description</label>
+                <input type="text" name="Description" id="Description" class="form-control" required> -->
+       </div>
+             
+                <label for="Amount">Discription</label>
+                <div class="input-group ">
+                    <div class="input-group-prepend">
+
+                      <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                    </div>
+                        <input type="text" name="Description" id="Description" class="form-control" required min="0" step="0.01">
+       
               
                 <!-- <label for="Type">Description</label>
                 <input type="text" name="Description" id="Description" class="form-control" required> -->

@@ -197,7 +197,7 @@ include("src/conection.php");
                     </span>
                   
                     <span class="text">Let theme shine like a star</span>
-                    <small class="badge badge-warning"><i class="far fa-clock"></i><?php echo $row['Name']; ?></small>
+                    <small class="badge badge-warning"><i class="far fa-clock"></i></small>
                     <div class="tools">
                       <i class="fas fa-edit"></i>
                       <i class="fas fa-trash-o"></i>
