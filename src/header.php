@@ -17,6 +17,7 @@ else{
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HIILWALAL</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -43,6 +44,9 @@ else{
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -204,16 +208,16 @@ else{
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="Sadaqah.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Sadaqah</p>
                 </a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a href="chariyah.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Chariyah</p>
+                  <p>Charity</p>
                 </a>
               </li>
              
@@ -237,6 +241,7 @@ else{
                 </a>
               </li> 
             </ul>
+            
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -305,17 +310,15 @@ else{
               </li> 
             </ul>
           </li> -->
-         
-
-
-
-
-
-
-
-
-        
           
+          <li class="nav-item">
+            <a href="notice.php" class="nav-link">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <p>
+               Notice
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="logout.php" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>

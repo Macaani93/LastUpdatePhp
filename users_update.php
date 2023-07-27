@@ -59,7 +59,7 @@ if (isset($_POST['Edit-user'])) {
                       <div class="col-md 6">
                         <div class="form-group">
                           <label for="">Phone</label>
-                          <input type="text" name="Phone" id="Phone" value="<?php echo $update_row ['Phone']?>" class="form-control" placeholder="Enter Your Phone" required>
+                          <input type="number" name="Phone" id="Phone" value="<?php echo $update_row ['Phone']?>" class="form-control" placeholder="Enter Your Phone" required >
                         </div>
                       </div>
                    
@@ -79,6 +79,7 @@ if (isset($_POST['Edit-user'])) {
            <option value="<?php echo $update_row['Role']?>"><?php echo $update_row['Role']?></option>
              <?php if($update_row['Role']=='User'){?>
            <option value="Admin">Admin</option>
+       
             <?php }else{?>
              <option value="User">User</option>
                <?php }?>

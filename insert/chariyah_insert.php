@@ -4,7 +4,7 @@ if (isset($_POST['insert_chariyah'])) {
     //$id = $_POST['ID'];
     $fname = $_POST['name'];
     $phone = $_POST['phone'];
-    $type=$_POST['Type'];
+    $type=$_POST['type'];
     $date=$_POST['DonateDate'];
     $district=$_POST['district'];
     $amount=$_POST['Amount'];
@@ -16,7 +16,8 @@ if (isset($_POST['insert_chariyah'])) {
   
    
 
-    $insert_chariyah = mysqli_query($conection,"INSERT INTO `chariyah`(`Name`, `Phone`, `Type`, `DonateDate`,`District`, `Amount`, `Description`) VALUES ('$fname',' $phone',' $type','$date', '$district' ,'$amount',' $description')");
+    $insert_chariyah = mysqli_query($conection,"INSERT INTO `chariyah`(`Name`, `Phone`, `Type`, `DonateDate`,`District`, `Amount`, `Description`) 
+    VALUES ('$fname',' $phone',' $type','$date', '$district' ,'$amount',' $description')");
    
     if($insert_chariyah){
         echo" <script>alert('insert successfully')</script>";
@@ -42,6 +43,3 @@ if (isset($_POST['insert_chariyah'])) {
         //    echo $sch;
         }
 }
-    
-
-?>

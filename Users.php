@@ -110,9 +110,9 @@
         <div class="col-md-6">
         <div class="form-group">
         <label for="">Phone:</label>
-     <input type="tell" name="Phone" id="Phone"
+     <input type="number" name="Phone" id="Phone"
     class="form-control" placeholder="Enter phome No"
-                required>
+                required min="0">
               </div> </div>
     <div class="col-md-6">
     <div class="form-group">

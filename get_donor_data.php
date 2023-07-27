@@ -4,7 +4,7 @@ include('src/conection.php');
 if (isset($_POST['blood_type'])) {
   $blood_type = $_POST['blood_type'];
 
-  $sql = "SELECT DISTINCT bd.ID ID, bd.name PersonName, bd.Address, bd.Phone, bd.Age Age, 
+  $sql = "SELECT DISTINCT bd.ID ID, bd.name PersonName, d.Name Address, bd.Phone, bd.Age Age, 
   CASE
     WHEN TIMESTAMPDIFF(SECOND, bd.RegDate, NOW()) < 60 THEN CONCAT(TIMESTAMPDIFF(SECOND, bd.RegDate, NOW()), ' seconds ago')
     WHEN TIMESTAMPDIFF(MINUTE, bd.RegDate, NOW()) < 60 THEN CONCAT(TIMESTAMPDIFF(MINUTE, bd.RegDate, NOW()), ' minutes ago')
@@ -14,7 +14,7 @@ if (isset($_POST['blood_type'])) {
   END AS RegDateAgo,
   bd.Status as Status, b.name BloodType
 FROM blooddonor bd 
-LEFT JOIN blood b ON b.ID = bd.BloodType 
+LEFT JOIN blood b ON b.ID = bd.BloodType left join district d on d.ID=bd.District
 WHERE b.ID = '$blood_type' AND bd.Status = 'Approved' order by bd.RegDate desc";
   $result = mysqli_query($conection, $sql);
 
