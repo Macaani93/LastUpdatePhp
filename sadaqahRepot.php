@@ -1,101 +1,91 @@
 <?php include("src/header.php");
- include("src/conection.php");
+include("src/conection.php");
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Reports</h1>
-                </div>
-   <div class="col-sm-6">
-    <ol class="breadcrumb float-sm-right">
-      <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-       <li class="breadcrumb-item active">Sadaqah reports</li>
-                    </ol>
-                </div>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Reports</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+            <li class="breadcrumb-item active">Sadaqah reports</li>
+          </ol>
+        </div>
 
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+
+          <!-- /.card -->
+
+          <div class="card">
+            <div class="card-header">
+              <!-- <h3 class="card-title">Department </h3> -->
             </div>
-        </div><!-- /.container-fluid -->
-    </section>
+            <!-- DEPARTMENT TABLE -->
+            <!-- /.card-header -->
+            <div class="card-body">
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-
-                    <!-- /.card -->
-
-                    <div class="card">
-                        <div class="card-header">
-                            <!-- <h3 class="card-title">Department </h3> -->
-                        </div>
-                        <!-- DEPARTMENT TABLE -->
-                        <!-- /.card-header -->
-        <div class="card-body">
-                   
-     <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Name</th>
                     <th>Phone</th>
-                    <th>Type</th>
-                    <th>DonateDate</th>
                     <th>Amount</th>
-                    <th>Description</th>
+                    <th>RegDate</th>
+                    <th>CharityID</th>
                     <th>UserID</th>
-                    <th>Status</th>
-                    <th>Action</th>
                   </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+                <tbody>
                   <?php
-      $readquery=mysqli_query($conection,'SELECT * FROM  ``');
-      if ($readquery){
-        foreach($readquery as $row){
-      ?>
-                  <tr>
-          <td><?php echo $row['ID']?></td>
-          <td><?php echo $row['Name'] ?></td>
-          <td><?php echo $row['Phone']?></td>
-          <td><?php echo $row['Type']?></td>
-          <td><?php echo $row['DonateDate']?></td>
-          <td><?php echo $row['Amount']?></td>
-          <td><?php echo $row['Description']?></td>
-          <td><?php echo $row['UserID']?></td>
-          <td><?php echo $row['Status']?></td>       
-                    <td>
-    <button class='btn btn-success btn_edit'><i class="fa fa-edit "></i>Edit</button>
-      <button class='btn btn-danger btn_delete'><i class="fa fa-trash"></i>Delete</button>
-                    </td>
-                  </tr>
-                  <?php }}?>
-                 
-                  
-                </table>             
-                  
-               
-               </div>
-       <!-- /.card-body -->
-           </div>
-       <!-- /.card -->
+                  $readquery = mysqli_query($conection, 'SELECT * FROM  `sadaqah`');
+                  if ($readquery) {
+                    foreach ($readquery as $row) {
+                  ?>
+                      <tr>
+                        <td><?php echo $row['ID'] ?></td>
+                        <td><?php echo $row['Phone'] ?></td>
+                        <td><?php echo $row['Amount'] ?></td>
+                        <td><?php echo $row['RegDate'] ?></td>
+                        <td><?php echo $row['CharityID'] ?></td>
+                        <td><?php echo $row['UserID'] ?></td>
+                      </tr>
+                  <?php }
+                  } ?>
+
+
+              </table>
+
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
         </div>
         <!-- /.col -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </section>
-    <!-- /.modal-dialog -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.modal-dialog -->
 </div>
 
 <!-- /.modal-dialog -->
 </div>
-<?php include("src/footer.php");?>
+<?php include("src/footer.php"); ?>
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -112,25 +102,26 @@
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
-
-$(document).ready(function() {
+  $(document).ready(function() {
     $('.btn_delete').on('click', function() {
-        // alert('Are you sure');
-        $('#sadqah_delete').modal('show');
-        $tr = $(this).closest('tr');
-        let data = $tr.children('td').map(function() {
-            return $(this).text();
-        }).get();
-        console.log(data[0]);
-        $('#delateID').val(data[0]);
+      // alert('Are you sure');
+      $('#sadqah_delete').modal('show');
+      $tr = $(this).closest('tr');
+      let data = $tr.children('td').map(function() {
+        return $(this).text();
+      }).get();
+      console.log(data[0]);
+      $('#delateID').val(data[0]);
     })
-    })
+  })
 
 
-$(function () {
+  $(function() {
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": [ "excel", "pdf", "print"]
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": false,
+      "buttons": ["excel", "pdf", "print"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,

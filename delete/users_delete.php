@@ -13,8 +13,3 @@ if (isset($_POST['user_delete'])) {
         echo"<script>window.location.href='../users_list.php'</script>";
     }
    }
-
-
-
-
-?>

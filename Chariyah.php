@@ -1,6 +1,7 @@
 <?php
 include('src/header.php');
 include('src/conection.php');
+
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -25,7 +26,6 @@ include('src/conection.php');
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-
         <div class="col-12">
           <div class="card">
 
@@ -46,21 +46,22 @@ include('src/conection.php');
                     <th>Type</th>
                     <th>DonateDate</th>
                     <th>Amount</th>
+
                     <th>Description</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                  $readquery = mysqli_query($conection, 'SELECT * FROM  `chariyah`');
+                  $readquery = mysqli_query($conection, 'SELECT ID,Name,Phone,Type,District,Date_Format(DonateDate,"%Y-%m-%d") as DonateDate ,Amount,Description FROM `chariyah`');
                   if ($readquery) {
                     $count = 0;
                     foreach ($readquery as $row) {
 
                   ?>
                       <tr>
-                        <td><?php echo $count += 1 ?></td>
-                        <!-- <td><?php echo $row['ID'] ?></td> -->
+                        <td value=""><?php echo $count += 1 ?></td>
+                        <td hidden><?php echo $row['ID'] ?></td>
                         <td><?php echo $row['Name'] ?></td>
                         <td><?php echo $row['Phone'] ?></td>
                         <td><?php echo $row['Type'] ?></td>
@@ -69,7 +70,7 @@ include('src/conection.php');
                         <td><?php echo $row['Description'] ?></td>
 
                         <td>
-                          <button class='btn btn-success btn_edit'><i class="fa fa-edit "></i></button>
+                          <button class='btn btn-success btn_edit'><i class="fa fa-edit  btn_edit "></i></button>
                           <button class='btn btn-danger btn_delete'><i class="fa fa-trash"></i></button>
                         </td>
                       </tr>
@@ -138,14 +139,14 @@ include('src/conection.php');
                 </select>
               </div>
 
-              <label for="Type">DonateDate</label>
+              <!-- <label for="Type">DonateDate</label>
               <div class="input-group ">
                 <div class="input-group-prepend">
 
                   <span class="input-group-text"><i class="fa fa-calendar"></i></span>
                 </div>
                 <input type="date" name="DonateDate" id="DonateDate" class="form-control" required>
-              </div>
+              </div> -->
 
               <label for="Type">District</label>
               <div class="input-group ">
@@ -238,6 +239,7 @@ include('src/conection.php');
           <div class="fromgroup">
             <label for="name">Name</label>
             <input type="text" name="name" id="name" class="form-control">
+
             <label for="Adress">Adress</label>
             <input type="text" name="Address" id="Address" class="form-control">
             <label for="phone">Phone</label>
@@ -257,7 +259,7 @@ include('src/conection.php');
           </div>
       </div>
       <div class="modal-footer ">
-        <button type="button" class="btn btn-default bg-danger" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default bg-danger btncencel" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
       </form>
@@ -265,32 +267,111 @@ include('src/conection.php');
     <!-- /.modal-content -->
   </div>
 </div>
-<!-- end  edit modal or update modal -->
-
-<!-- delete modal -->
-<div class="modal fade" id="delete_modal">
+<!--user-insert model -->
+<div class="modal fade" id="charity-modal">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" style="width:600px; text-align:center;">
       <div class="modal-header">
-        <h4 class="modal-title">Delete_modal</h4>
+        <h4 class="modal-title ">Update Data</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form action="delete/donor_delete.php" method="post">
+      <div class="modal-body ">
+        <form action="chariya_update.php" method="post" enctype="multipart/form-data">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Name:</label>
+                <input type="text" name="Name" id="NameUp" class="form-control" required>
+                <input type="text" name="ID" id="ID" class="form-control" hidden>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="">Phone:</label>
+                <input type="number" name="Phone" id="PhoneUp" class="form-control" required min="0">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="Type">Type</label>
+              <div class="input-group ">
+                <div class="input-group-prepend">
 
-          <input type="text" name="delete" id="deleteID" class="form-control">
-          <h3>Do you want to delete</h3>
+                  <span class="input-group-text"><i class="fas fa-hand-holding-heart"></i></span>
+                </div>
+                <!-- <input type="text" name="Type" id="Type" class="form-control" required> -->
+                <select name="type" id="typeUp" class="form-control">
+                  <option value="Masjid">Masjid</option>
+                  <option value="Dugsi">Dugsi</option>
+                  <option value="Wado">Wado</option>
+                  <option value="Ceel">Ceel</option>
+                  <!-- <option value=""></option> -->
+
+                </select>
+              </div>
+            </div>
+
+            <!-- <div class="col-md-6">
+              <div class="form-group">
+                <label for="">Donate Date:</label>
+                <input type="date" name="donatedate" id="donatedateUp" class="form-control" required>
+              </div>
+            </div> -->
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="">Description</label>
+                <input type="text" name="description" id="descriptionUp" class="form-control" required>
+                <span class="confirmpass"></span>
+              </div>
+            </div>
+
+
+          </div>
       </div>
       <div class="modal-footer ">
-        <button type="button" class="btn btn-default bg-success" data-dismiss="modal">No</button>
-        <button type="button" name="delete" class="btn btn-warning">Yes</button>
+        <button type="button" class="btn btn-success btnclose " data-dismiss="modal">Close</button>
+        <button type="submit" name="update_chariyah" class="btn btn-dark">Update
+        </button>
       </div>
       </form>
     </div>
     <!-- /.modal-content -->
   </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+
+
+
+<!--delete model -->
+<div class="modal fade" id="charity_delete">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete Data</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form action="delete/CharityDelete.php" method="post">
+          <input type="hidden" name="delateID" id="delateID" class="form-control">
+          <h3>Are you sure !</h3>
+
+      </div>
+      <div class="modal-footer ">
+        <button type="button" class="btn btn-default bg-danger btnclose" data-dismiss="modal">Close</button>
+        <button type="submit" name="charity_delete" class="btn btn-warning ">Yes Delete
+          it</button>
+      </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
 </div>
 
 <!-- delete modal -->
@@ -322,24 +403,9 @@ include('src/conection.php');
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+
 <script>
-  $(function() {
-    $("#example1").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": ["excel", "pdf", "print"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
+
 </script>
 </body>
 
@@ -350,6 +416,62 @@ include('src/conection.php');
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 <script>
+  // delete
+  $(document).ready(function() {
+    $('.btn_delete').on('click', function() {
+      // alert('Are you sure');
+      $('#charity_delete').modal('show');
+      $tr = $(this).closest('tr');
+      let data = $tr.children('td').map(function() {
+        return $(this).text();
+      }).get();
+      // console.log(data[0]);
+      $('#delateID').val(data[1]);
+      $('.btnclose').click(function() {
+        $('#charity_delete').modal('hide');
+      })
+    })
+    $('.btn_edit').on('click', function() {
+      // alert('Are you sure');
+      $('#charity-modal').modal('show');
+      $tr = $(this).closest('tr');
+      let data = $tr.children('td').map(function() {
+        return $(this).text();
+      }).get();
+      console.log(data[0]);
+      console.log(data[1]);
+      console.log(data[2]);
+      console.log(data[3]);
+      console.log(data[4]);
+      console.log(data[5]);
+      console.log(data[6]);
+      console.log(data[7]);
+
+      $('#ID').val(data[1]);
+      $('#NameUp').val(data[2]);
+      $('#PhoneUp').val(data[3]);
+      // $("#typeUp option").filter(function() {
+      //   return $(this).text() === data[4];
+      // }).prop("selected", true);
+      $('#typeUp').val('' + data[4]);
+      $('#donatedateUp').val(data[6]);
+      $('#descriptionUp').val(data[7]);
+
+    })
+    $('.btnclose').click(function() {
+      $('#charity-modal').modal('hide');
+    })
 
 
+
+  })
 </script>
+
+
+
+
+<?php
+
+
+
+?>
