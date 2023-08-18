@@ -3,6 +3,8 @@ include('src/header.php');
 include('src/conection.php');
 
 ?>
+
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -33,15 +35,14 @@ include('src/conection.php');
               <button type="button" class="btn btn-default bg-primary" data-toggle="modal" data-target="#chariyal-modal"><i class="fa fa-plus"></i> Add New</button>
               <br>
               <br>
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="donorTBL" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Address</th>
-                    <!-- <th>Region</th> -->
-                    <!-- <th>District</th> -->
                     <th>Phone</th>
+                    <th>Region</th>
+                    <th>District</th>
                     <th>Age</th>
                     <th>RegDate</th>
                     <th>BloodType</th>
@@ -52,7 +53,7 @@ include('src/conection.php');
                 <tbody>
                   <?php
                   $count = 0;
-                  $readquery = mysqli_query($conection, "SELECT bd.ID ID, bd.name PersonName,d.Name Address,bd.Phone,bd.Age as Age,bd.RegDate as RegDate,bd.Status as Status,b.name AS 'BloodType' FROM blooddonor bd, blood b,district d where b.ID = bd.BloodType  and d.ID=bd.District");
+                  $readquery = mysqli_query($conection, "SELECT bd.ID ID, bd.name PersonName,d.Name District,r.name Region,bd.Phone,bd.Age as Age,bd.RegDate as RegDate,bd.Status as Status,b.name AS 'BloodType' FROM blooddonor bd, blood b,district d,regions r where b.ID = bd.BloodType  and d.ID=bd.District and bd.Region=r.ID");
 
                   if ($readquery) {
                     foreach ($readquery as $row) {
@@ -61,9 +62,10 @@ include('src/conection.php');
                         <td hidden><?php echo $row['ID'] ?></td>
                         <td><?php echo $count += 1; ?></td>
                         <td><?php echo $row['PersonName'] ?></td>
-                        <td><?php echo $row['Address'] ?></td>
 
                         <td><?php echo $row['Phone'] ?></td>
+                        <td><?php echo $row['Region'] ?></td>
+                        <td><?php echo $row['District'] ?></td>
                         <td><?php echo $row['Age'] ?></td>
                         <td><?php echo $row['RegDate'] ?></td>
                         <td><?php echo $row['BloodType'] ?></td>
@@ -106,7 +108,6 @@ include('src/conection.php');
   </section>
 </div>
 <!-- /.modal-dialog -->
-</div>
 <!--donor modal insert -->
 <div class="modal fade" id="chariyal-modal">
   <div class="modal-dialog">
@@ -128,14 +129,7 @@ include('src/conection.php');
               <input type="text" name="Name" id="Name" class="form-control" required>
 
             </div>
-            <!-- <label for="Address" class="my-2">Address</label>
-            <div class="input-group ">
-              <div class="input-group-prepend">
 
-                <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
-              </div>
-              <input type="text" name="Address" id="Address" "  class=" form-control" required>
-            </div> -->
             <label for="Address" class="my-2">Region</label>
 
             <!-- <input type="text" name="region" id="region" "  class=" form-control" required> -->
@@ -274,14 +268,14 @@ include('src/conection.php');
 
 
             </div>
-            <label for="Address" class="my-2">Address</label>
+            <!-- <label for="Address" class="my-2">Address</label>
             <div class="input-group ">
               <div class="input-group-prepend">
 
                 <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
               </div>
               <input type="text" name="Address" id="AddressUp" class=" form-control" required>
-            </div>
+            </div> -->
 
             <label for="number">Phone</label>
             <div class="input-group ">
@@ -298,7 +292,7 @@ include('src/conection.php');
 
                 <span class="input-group-text"><i class="fa fa-calendar"></i></span>
               </div>
-              <input type="date" name="age" id="ageUp" class="form-control" required min="18">
+              <input type="number" name="age" id="ageUp" class="form-control" required min="18">
 
             </div>
             <label for="Type">BloodType</label>
@@ -325,8 +319,7 @@ include('src/conection.php');
 </div>
 
 <!--end donor modal -->
-<!-- /.content -->
-</div>
+
 <!-- --------------------------------------------------------------------------------- -->
 <div class="modal fade" id="donor_approve">
   <div class="modal-dialog">
@@ -407,24 +400,22 @@ include('src/conection.php');
 </div>
 
 <!--end delete modal -->
-<!-- /.content -->
-</div>
+
 
 
 <!-- /.content-wrapper -->
 <!-- Control Sidebar -->
 
-<aside class="control-sidebar control-sidebar-dark">
-  <!-- Control sidebar content goes here -->
-</aside>
 
-<!-- /.control-sidebar -->
-</div>
+
+
 
 <!-- ./wrapper -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<!-- <?php include("src/footer.php"); ?> -->
 <!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -442,9 +433,6 @@ include('src/conection.php');
 
 
 
-</script>
-
-<?php include("src/footer.php"); ?>
 <script>
   //delete
   $(document).ready(function() {
@@ -541,34 +529,18 @@ include('src/conection.php');
       $('#deletedonor').modal('hide');
     })
   })
-
   $(function() {
-    $("#example1").DataTable({
+    $("#donorTBL").DataTable({
       "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
       "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
-</body>
-
-</html>
-<!-- Bootstrap javascript -->
+      "lengthChange": true,
+      "autoWidth": true,
+      dom: 'Bfrtip',
+      buttons: [
+        'print'
+      ]
+    })
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-<script>
-
+  })
 </script>

@@ -232,6 +232,13 @@ include('src/conection.php');
             table_html += '</tr>';
           });
           $('#donor_table tbody').html(table_html);
+          $("#donor_table").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["excel", "pdf", "print"]
+          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+          $('#example1_wrapper .col-md-6:eq(0) .btn-group').addClass('my-button-container');
         } else {
           $('#donor_table tbody').html('<tr><td colspan="8">No records found</td></tr>');
         }
@@ -242,12 +249,12 @@ include('src/conection.php');
     });
   });
   $(function() {
-    $("#donor_table").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": ["excel", "pdf", "print"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    // $("#donor_table").DataTable({
+    //   "responsive": true,
+    //   "lengthChange": false,
+    //   "autoWidth": false,
+    //   "buttons": ["excel", "pdf", "print"]
+    // }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -259,33 +266,9 @@ include('src/conection.php');
     });
   });
 
-  $(function() {
-    $("#example1").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
+  // 
 </script>
 </body>
 
 </html>
 <!-- Bootstrap javascript -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-<script>
-
-
-</script>

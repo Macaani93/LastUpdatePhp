@@ -20,6 +20,7 @@ include("src/conection.php");
       </div>
     </div><!-- /.container-fluid -->
   </section>
+  ,
 
   <!-- Main content -->
   <section class="content">
@@ -31,60 +32,81 @@ include("src/conection.php");
 
           <div class="card">
             <div class="card-header">
-              <!-- <h3 class="card-title">Department </h3> -->
+              <div class="row">
+                <div class="col-3">
+                  <label>From Date</label>
+                  <input type="date" name="fromDate" id="fromDate" class="form-control" required>
+
+                </div>
+                <div class="col-3">
+
+                  <label>To Date</label>
+                  <input type="date" name="EndDate" id="EndDate" class="form-control" required>
+
+                </div>
+                <div class="col-2">
+                  <label>Type</label>
+                  <select class="form-control select2" name="CharityID" id="CharityID" style="width: 100%;">
+                    <?php
+                    // connect to the database
+                    include("../src/conection.php");
+                    // fetch data from the database
+                    $sql = " select 'All' as id,'All' as name union
+                    SELECT id, name FROM chariyah";
+                    $result = mysqli_query($conection, $sql);
+
+                    // generate HTML for the dropdown list
+                    while ($row = mysqli_fetch_assoc($result)) {
+                      echo "<option value='" . $row['id'] . "'>" . $row['name'] . "</option>";
+                    }
+                    ?>
+                  </select>
+                </div>
+
+                <div class="col-2">
+                  <br>
+                  <button type="button" class="btn btn-default bg-primary mt-2" id="search_btn"><i class="fa fa-search"></i> Search</button>
+
+                </div>
+
+              </div>
+              <div class="card-body">
+
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Charity Name</th>
+                      <th>Type </th>
+                      <th>Phone</th>
+                      <th>Amount</th>
+                      <th>RegDate</th>
+                    </tr>
+                  </thead>
+                  <tbody id="saqahTBL">
+                  </tbody>
+
+
+                </table>
+
+
+              </div>
+              <!-- /.card-body -->
             </div>
-            <!-- DEPARTMENT TABLE -->
-            <!-- /.card-header -->
-            <div class="card-body">
-
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Phone</th>
-                    <th>Amount</th>
-                    <th>RegDate</th>
-                    <th>CharityID</th>
-                    <th>UserID</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $readquery = mysqli_query($conection, 'SELECT * FROM  `sadaqah`');
-                  if ($readquery) {
-                    foreach ($readquery as $row) {
-                  ?>
-                      <tr>
-                        <td><?php echo $row['ID'] ?></td>
-                        <td><?php echo $row['Phone'] ?></td>
-                        <td><?php echo $row['Amount'] ?></td>
-                        <td><?php echo $row['RegDate'] ?></td>
-                        <td><?php echo $row['CharityID'] ?></td>
-                        <td><?php echo $row['UserID'] ?></td>
-                      </tr>
-                  <?php }
-                  } ?>
-
-
-              </table>
-
-
-            </div>
-            <!-- /.card-body -->
+            <!-- /.card -->
           </div>
-          <!-- /.card -->
+          <!-- /.col -->
         </div>
-        <!-- /.col -->
+        <!-- /.row -->
       </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
+      <!-- /.container-fluid -->
   </section>
   <!-- /.modal-dialog -->
 </div>
 
 <!-- /.modal-dialog -->
 </div>
+
 <?php include("src/footer.php"); ?>
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
@@ -101,6 +123,17 @@ include("src/conection.php");
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+
+
+
+
+
+
+
+
+
+
+
 <script>
   $(document).ready(function() {
     $('.btn_delete').on('click', function() {
@@ -116,13 +149,83 @@ include("src/conection.php");
   })
 
 
+  $(document).ready(function() {
+    $('#printButton').on('click', function() {
+      window.print();
+    });
+  });
+  $('#search_btn').off('click').on('click', function() {
+    console.log('yaah');
+    var CharityID = $('#CharityID').val();
+    var fromDate = $('#fromDate').val();
+    var EndDate = $('#EndDate').val();
+    $.ajax({
+      url: 'GetsadaqahReportByCreteria.php',
+      type: 'POST',
+      data: {
+
+        fromDate: fromDate,
+        EndDate: EndDate,
+        CharityID: CharityID
+      },
+      dataType: 'json',
+      success: function(data) {
+
+        console.log(data);
+        // $('#example1 tbody').empty();
+        if (data.length > 0) {
+          $("#example1").DataTable().destroy();
+          $("#example1 tbody").html("")
+          var table_html = '';
+          console.log(table_html);
+          $.each(data, function(index, row) {
+            // console.log(row)
+            // console.log(table_html);
+            table_html += '<tr>';
+            table_html += '<td>' + parseInt(index + 1) + '</td>';
+            // table_html += '<td>' + row.Name + '</td>';
+            table_html += '<td>' + row.CharityID + '</td>';
+            table_html += '<td>' + row.UserID + '</td>';
+            table_html += '<td>' + row.Phone + '</td>';
+            table_html += '<td>' + row.Amount + '</td>';
+            table_html += '<td>' + row.RegDate + '</td>';
+            table_html += '</tr>';
+          });
+          $('#saqahTBL').html(table_html);
+          $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["excel", "pdf", "print"]
+          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+          $('#example1_wrapper .col-md-6:eq(0) .btn-group').addClass('my-button-container');
+        } else {
+          $('#saqahTBL').html('<tr><td colspan="8">No records found</td></tr>');
+        }
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.responseText);
+      }
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
   $(function() {
-    $("#example1").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": ["excel", "pdf", "print"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    // $("#example1").DataTable({
+    //   "responsive": true,
+    //   "lengthChange": false,
+    //   "autoWidth": false,
+    //   "buttons": ["excel", "pdf", "print"]
+    // }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -134,15 +237,8 @@ include("src/conection.php");
     });
   });
 </script>
+</script>
 </body>
 
 </html>
 <!-- Bootstrap javascript -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-<script>
-
-
-</script>

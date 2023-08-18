@@ -56,6 +56,7 @@ include("src/conection.php");
                 <div class="col-2">
                   <br>
                   <button type="button" class="btn btn-default bg-primary mt-2" id="search_btn"><i class="fa fa-search"></i> Search</button>
+
                 </div>
               </div>
               <!-- <h3 class="card-title">Department </h3> -->
@@ -131,6 +132,15 @@ include("src/conection.php");
       $('#delateID').val(data[0]);
     })
   })
+
+
+
+
+
+
+
+
+
   $('#search_btn').off('click').on('click', function() {
     console.log('yaah');
     var type = $('#type').val();
@@ -150,6 +160,8 @@ include("src/conection.php");
         console.log(data);
         // $('#example1 tbody').empty();
         if (data.length > 0) {
+          $("#example1").DataTable().destroy();
+          $("#example1 tbody").html("")
           var table_html = '';
           console.log(table_html);
           $.each(data, function(index, row) {
@@ -167,6 +179,13 @@ include("src/conection.php");
             table_html += '</tr>';
           });
           $('#tbodyDonor').html(table_html);
+          $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "buttons": ["excel", "pdf", "print"]
+          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+          $('#example1_wrapper .col-md-6:eq(0) .btn-group').addClass('my-button-container');
         } else {
           $('#tbodyDonor').html('<tr><td colspan="8">No records found</td></tr>');
         }
@@ -176,16 +195,13 @@ include("src/conection.php");
       }
     });
   });
-
-
-
   $(function() {
-    $("#example1").DataTable({
-      "responsive": true,
-      "lengthChange": false,
-      "autoWidth": false,
-      "buttons": ["excel", "pdf", "print"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    // $("#example1").data({
+    //   "responsive": true,
+    //   "lengthChange": false,
+    //   "autoWidth": false,
+    //   "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    // }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
       "paging": true,
       "lengthChange": false,
@@ -201,11 +217,3 @@ include("src/conection.php");
 
 </html>
 <!-- Bootstrap javascript -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-<script>
-
-
-</script>

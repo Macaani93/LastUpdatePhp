@@ -2,14 +2,14 @@
 include('src/conection.php');
 
 if (isset($_POST['fromDate'])) {
-    $type = $_POST['Type'];
+    $CharityID = $_POST['CharityID'];
     $fromDate = $_POST['fromDate'];
     $EndDate = $_POST['EndDate'];
 
     // $sql = "SET @status = '$status';";
     // mysqli_query($conection, $sql);
 
-    $sql = "SET @type = '$type';";
+    $sql = "SET @chariyahID = '$CharityID';";
     mysqli_query($conection, $sql);
 
     $sql = "SET @startDate = '$fromDate';";
@@ -19,12 +19,15 @@ if (isset($_POST['fromDate'])) {
     mysqli_query($conection, $sql);
 
     $query = "
-   SELECT *
-FROM `chariyah`
-WHERE (@type = 'All' OR Type COLLATE utf8mb4_general_ci = @type COLLATE utf8mb4_general_ci)
- and DATE(DonateDate) BETWEEN @startDate and @endDate
-    ";
-
+SELECT ch.Name CharityID,s.Phone,s.Amount,s.RegDate,ch.Type as UserID
+FROM `sadaqah` s, chariyah ch WHERE s.CharityID=ch.ID
+and (@chariyahID = 'All' OR s.CharityID  = @chariyahID )
+and DATE(s.RegDate) BETWEEN @startDate and @endDate";
+    // $CharityID = $_POST['CharityID'];
+    // $fromDate = $_POST['fromDate'];
+    // $EndDate = $_POST['EndDate'];
+    // kuwaan iska hubi DatabTable Print haka hilmaamin Engr 
+    // ku soco 
     $result = mysqli_query($conection, $query);
 
     if (!$result) {

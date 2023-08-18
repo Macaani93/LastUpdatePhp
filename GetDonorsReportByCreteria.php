@@ -35,7 +35,7 @@ if (isset($_POST['blood_type'])) {
     WHERE
         (@status = 'All' OR bd.Status = @status) AND
         (b.ID = @bloodType OR @bloodType = 'All') AND
-        bd.RegDate BETWEEN @startDate AND @endDate
+    DATE(bd.RegDate) BETWEEN @startDate AND @endDate
     ORDER BY bd.RegDate DESC
     ";
 

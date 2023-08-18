@@ -31,12 +31,251 @@ include('src/conection.php');
 
             <!-- /.card-header -->
             <div class="card-body">
+              <div class="modal fade" id="chariyal-modal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Chariyah</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="insert/chariyah_insert.php" method="post">
+
+                        <div class="fromgroup">
+                          <label for="name">Name</label>
+                          <div class="input-group ">
+                            <div class="input-group-prepend">
+
+                              <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" name="name" id="name" class="form-control" required>
+                          </div>
+
+                          <label for="phone">Phone</label>
+                          <div class="input-group ">
+                            <div class="input-group-prepend">
+
+                              <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                            </div>
+                            <input type="number" name="phone" id="phone" class="form-control" required min="0">
+                          </div>
+
+                          <label for="Type">Type</label>
+                          <div class="input-group ">
+                            <div class="input-group-prepend">
+
+                              <span class="input-group-text"><i class="fas fa-hand-holding-heart"></i></span>
+                            </div>
+                            <!-- <input type="text" name="Type" id="Type" class="form-control" required> -->
+                            <select name="type" id="type" class="form-control">
+                              <option value="Masjid">Masjid</option>
+                              <option value="Dugsi">Dugsi</option>
+                              <option value="Wado">Wado</option>
+                              <option value="Ceel">Ceel</option>
+                              <!-- <option value=""></option> -->
+
+                            </select>
+                          </div>
+
+
+                          <label for="Type">District</label>
+                          <div class="input-group ">
+                            <div class="input-group-prepend">
+
+                              <span class="input-group-text"><i class="fas fa-thumbs-up"></i></span>
+                            </div>
+                            <input type="text" name="district" id="district" class="form-control" required>
+
+                          </div>
+
+                          <label for="Amount">Amount</label>
+                          <div class="input-group ">
+                            <div class="input-group-prepend">
+
+                              <span class="input-group-text"><i class="fa-solid fa-money-bill"></i></span>
+                            </div>
+                            <input type="number" name="Amount" id="Amount" class="form-control" required min="0" step="0.01">
+                          </div>
+
+                          <!-- <label for="Type">Description</label>
+                <input type="text" name="Description" id="Description" class="form-control" required> -->
+                        </div>
+
+                        <label for="Amount">Discription</label>
+                        <div class="input-group ">
+                          <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                          </div>
+                          <input type="text" name="Description" id="Description" class="form-control" required min="0" step="0.01">
+
+
+                          <!-- <label for="Type">Description</label>
+                <input type="text" name="Description" id="Description" class="form-control" required> -->
+                        </div>
+                    </div>
+                    <div class="modal-footer ">
+                      <button type="button" class="btn btn-default bg-danger" data-dismiss="modal">Close</button>
+                      <button type="submit" name="insert_chariyah" id="insert_chariyah" class="btn btn-primary">Save </button>
+                    </div>
+                    </form>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+
+                <!-- /.modal-dialog -->
+              </div>
+
+
+              <!-- end chariyah insert modal -->
+
+              <!-- edit modal or update modal -->
+              <div class="modal fade" id="edit_modal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Update Data</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="update/update_donor.php" method="post">
+                        <div class="fromgroup">
+                          <label for="name">Name</label>
+                          <input type="text" name="name" id="name" class="form-control">
+
+                          <label for="Adress">Adress</label>
+                          <input type="text" name="Address" id="Address" class="form-control">
+                          <label for="phone">Phone</label>
+                          <input type="text" name="phone" id="phone" class="form-control">
+                          <label for="Type">Type</label>
+                          <input type="text" name="Type" id="Type" class="form-control">
+                          <label for="Type">DonateDate</label>
+                          <input type="text" name="DonateDate" id="DonateDate" class="form-control">
+                          <label for="Type">Amount</label>
+                          <input type="text" name="Amount" id="Amount" class="form-control">
+                          <label for="status">Status</label>
+                          <select name="satus" id="" class="form-control">
+
+                            <option value="Pending ">Pending</option>
+                            <option value="Approved ">Approved</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer ">
+                      <button type="button" class="btn btn-default bg-danger btncencel" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </form>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+              </div>
+              <!--user-insert model -->
+              <div class="modal fade" id="charity-modal">
+                <div class="modal-dialog">
+                  <div class="modal-content" style="width:600px; text-align:center;">
+                    <div class="modal-header">
+                      <h4 class="modal-title ">Update Data</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body ">
+                      <form action="chariya_update.php" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="">Name:</label>
+                              <input type="text" name="Name" id="NameUp" class="form-control" required>
+                              <input type="text" name="ID" id="ID" class="form-control" hidden>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="">Phone:</label>
+                              <input type="number" name="Phone" id="PhoneUp" class="form-control" required min="0">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <label for="Type">Type</label>
+                            <div class="input-group ">
+                              <div class="input-group-prepend">
+
+                                <span class="input-group-text"><i class="fas fa-hand-holding-heart"></i></span>
+                              </div>
+                              <!-- <input type="text" name="Type" id="Type" class="form-control" required> -->
+                              <select name="type" id="typeUp" class="form-control">
+                                <option value="Masjid">Masjid</option>
+                                <option value="Dugsi">Dugsi</option>
+                                <option value="Wado">Wado</option>
+                                <option value="Ceel">Ceel</option>
+                                <!-- <option value=""></option> -->
+
+                              </select>
+                            </div>
+                          </div>
+
+
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label for="">Description</label>
+                              <input type="text" name="description" id="descriptionUp" class="form-control" required>
+                              <span class="confirmpass"></span>
+                            </div>
+                          </div>
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer ">
+                      <button type="button" class="btn btn-success btnclose " data-dismiss="modal">Close</button>
+                      <button type="submit" name="update_chariyah" class="btn btn-dark">Update
+                      </button>
+                    </div>
+                    </form>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+              <!--delete model -->
+              <div class="modal fade" id="charity_delete">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Delete Data</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <div class="modal-body">
+                      <form action="delete/CharityDelete.php" method="post">
+                        <input type="hidden" name="delateID" id="delateID" class="form-control">
+                        <h3>Are you sure !</h3>
+
+                    </div>
+                    <div class="modal-footer ">
+                      <button type="button" class="btn btn-default bg-danger btnclose" data-dismiss="modal">Close</button>
+                      <button type="submit" name="charity_delete" class="btn btn-warning ">Yes Delete
+                        it</button>
+                    </div>
+                    </form>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+
+
+
               <button type="button" class="btn btn-default bg-primary" data-toggle="modal" data-target="#chariyal-modal">
                 <i class="fa fa-plus"></i> Add New
               </button>
-              <br>
-              <br>
-
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -74,11 +313,10 @@ include('src/conection.php');
                           <button class='btn btn-danger btn_delete'><i class="fa fa-trash"></i></button>
                         </td>
                       </tr>
-                  <?php }
+                  <?php    }
                   } ?>
-
-
               </table>
+
             </div>
             <!-- /.card-body -->
           </div>
@@ -90,308 +328,19 @@ include('src/conection.php');
     </div>
     <!-- /.container-fluid -->
   </section>
-  <!-- chariyah insert modal -->
-  <div class="modal fade" id="chariyal-modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Chariyah</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-          </button>
-        </div>
-        <div class="modal-body">
-          <form action="insert/chariyah_insert.php" method="post">
-
-            <div class="fromgroup">
-              <label for="name">Name</label>
-              <div class="input-group ">
-                <div class="input-group-prepend">
-
-                  <span class="input-group-text"><i class="fa fa-user"></i></span>
-                </div>
-                <input type="text" name="name" id="name" class="form-control" required>
-              </div>
-
-              <label for="phone">Phone</label>
-              <div class="input-group ">
-                <div class="input-group-prepend">
-
-                  <span class="input-group-text"><i class="fa fa-phone"></i></span>
-                </div>
-                <input type="number" name="phone" id="phone" class="form-control" required min="0">
-              </div>
-
-              <label for="Type">Type</label>
-              <div class="input-group ">
-                <div class="input-group-prepend">
-
-                  <span class="input-group-text"><i class="fas fa-hand-holding-heart"></i></span>
-                </div>
-                <!-- <input type="text" name="Type" id="Type" class="form-control" required> -->
-                <select name="type" id="type" class="form-control">
-                  <option value="Masjid">Masjid</option>
-                  <option value="Dugsi">Dugsi</option>
-                  <option value="Wado">Wado</option>
-                  <option value="Ceel">Ceel</option>
-                  <!-- <option value=""></option> -->
-
-                </select>
-              </div>
-
-              <!-- <label for="Type">DonateDate</label>
-              <div class="input-group ">
-                <div class="input-group-prepend">
-
-                  <span class="input-group-text"><i class="fa fa-calendar"></i></span>
-                </div>
-                <input type="date" name="DonateDate" id="DonateDate" class="form-control" required>
-              </div> -->
-
-              <label for="Type">District</label>
-              <div class="input-group ">
-                <div class="input-group-prepend">
-
-                  <span class="input-group-text"><i class="fas fa-thumbs-up"></i></span>
-                </div>
-                <input type="text" name="district" id="district" class="form-control" required>
-                <!-- <select name="type" id="type" class="form-control" > -->
-                <!-- <option value=""> None</option>
-                          <option value="">Benadir</option>
-                          <option value="">Shabelada-Hose</option>
-                          <option value="">Shabelada-Dhexe</option>
-                          <option value="">Hiiran</option>
-                          <option value="">Jubada -Dhexe</option>
-                          <option value="">Jubada -Hoose</option>
-                          <option value="">Bari</option>
-                          <option value="">Nugaal</option>
-                          <option value="">Bakool</option>
-                          <option value="">Baay</option>
-                          <option value="">Awdal</option>
-                          <option value="">Galgaduud</option>
-                          <option value="">Mudug</option>
-                          <option value="">Togdheer</option>
-                          <option value="">Sool</option>
-                          <option value="">Sanaag</option>
-                          <option value="">Gedo</option>
-                          <option value="">Waqooyi Galbeed</option> -->
-
-
-                <!-- <option value=""></option> -->
-
-                <!-- </select> -->
-              </div>
-
-              <label for="Amount">Amount</label>
-              <div class="input-group ">
-                <div class="input-group-prepend">
-
-                  <span class="input-group-text"><i class="fa-solid fa-money-bill"></i></span>
-                </div>
-                <input type="number" name="Amount" id="Amount" class="form-control" required min="0" step="0.01">
-              </div>
-
-              <!-- <label for="Type">Description</label>
-                <input type="text" name="Description" id="Description" class="form-control" required> -->
-            </div>
-
-            <label for="Amount">Discription</label>
-            <div class="input-group ">
-              <div class="input-group-prepend">
-
-                <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
-              </div>
-              <input type="text" name="Description" id="Description" class="form-control" required min="0" step="0.01">
-
-
-              <!-- <label for="Type">Description</label>
-                <input type="text" name="Description" id="Description" class="form-control" required> -->
-            </div>
-        </div>
-        <div class="modal-footer ">
-          <button type="button" class="btn btn-default bg-danger" data-dismiss="modal">Close</button>
-          <button type="submit" name="insert_chariyah" id="insert_chariyah" class="btn btn-primary">Save </button>
-        </div>
-        </form>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-
-    <!-- /.modal-dialog -->
-  </div>
-
-  <!-- /.modal-dialog -->
-</div>
-<!-- end chariyah insert modal -->
-
-<!-- edit modal or update modal -->
-<div class="modal fade" id="edit_modal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Update Data</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="update/update_donor.php" method="post">
-          <div class="fromgroup">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control">
-
-            <label for="Adress">Adress</label>
-            <input type="text" name="Address" id="Address" class="form-control">
-            <label for="phone">Phone</label>
-            <input type="text" name="phone" id="phone" class="form-control">
-            <label for="Type">Type</label>
-            <input type="text" name="Type" id="Type" class="form-control">
-            <label for="Type">DonateDate</label>
-            <input type="text" name="DonateDate" id="DonateDate" class="form-control">
-            <label for="Type">Amount</label>
-            <input type="text" name="Amount" id="Amount" class="form-control">
-            <label for="status">Status</label>
-            <select name="satus" id="" class="form-control">
-
-              <option value="Pending ">Pending</option>
-              <option value="Approved ">Approved</option>
-            </select>
-          </div>
-      </div>
-      <div class="modal-footer ">
-        <button type="button" class="btn btn-default bg-danger btncencel" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-      </form>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-</div>
-<!--user-insert model -->
-<div class="modal fade" id="charity-modal">
-  <div class="modal-dialog">
-    <div class="modal-content" style="width:600px; text-align:center;">
-      <div class="modal-header">
-        <h4 class="modal-title ">Update Data</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body ">
-        <form action="chariya_update.php" method="post" enctype="multipart/form-data">
-          <div class="row">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="">Name:</label>
-                <input type="text" name="Name" id="NameUp" class="form-control" required>
-                <input type="text" name="ID" id="ID" class="form-control" hidden>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="">Phone:</label>
-                <input type="number" name="Phone" id="PhoneUp" class="form-control" required min="0">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <label for="Type">Type</label>
-              <div class="input-group ">
-                <div class="input-group-prepend">
-
-                  <span class="input-group-text"><i class="fas fa-hand-holding-heart"></i></span>
-                </div>
-                <!-- <input type="text" name="Type" id="Type" class="form-control" required> -->
-                <select name="type" id="typeUp" class="form-control">
-                  <option value="Masjid">Masjid</option>
-                  <option value="Dugsi">Dugsi</option>
-                  <option value="Wado">Wado</option>
-                  <option value="Ceel">Ceel</option>
-                  <!-- <option value=""></option> -->
-
-                </select>
-              </div>
-            </div>
-
-            <!-- <div class="col-md-6">
-              <div class="form-group">
-                <label for="">Donate Date:</label>
-                <input type="date" name="donatedate" id="donatedateUp" class="form-control" required>
-              </div>
-            </div> -->
-            <div class="col-md-12">
-              <div class="form-group">
-                <label for="">Description</label>
-                <input type="text" name="description" id="descriptionUp" class="form-control" required>
-                <span class="confirmpass"></span>
-              </div>
-            </div>
-
-
-          </div>
-      </div>
-      <div class="modal-footer ">
-        <button type="button" class="btn btn-success btnclose " data-dismiss="modal">Close</button>
-        <button type="submit" name="update_chariyah" class="btn btn-dark">Update
-        </button>
-      </div>
-      </form>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
 </div>
 
 
 
-
-
-<!--delete model -->
-<div class="modal fade" id="charity_delete">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Delete Data</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <form action="delete/CharityDelete.php" method="post">
-          <input type="hidden" name="delateID" id="delateID" class="form-control">
-          <h3>Are you sure !</h3>
-
-      </div>
-      <div class="modal-footer ">
-        <button type="button" class="btn btn-default bg-danger btnclose" data-dismiss="modal">Close</button>
-        <button type="submit" name="charity_delete" class="btn btn-warning ">Yes Delete
-          it</button>
-      </div>
-      </form>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-<!-- delete modal -->
-
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
-<!-- Control Sidebar -->
-<aside class="control-sidebar control-sidebar-dark">
-  <!-- Control sidebar content goes here -->
-</aside>
-<!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
 
 <?php include("src/footer.php"); ?>
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
@@ -402,22 +351,21 @@ include('src/conection.php');
 <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page specific script -->
 
 
-<script>
 
-</script>
-</body>
-
-</html>
-<!-- Bootstrap javascript -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 <script>
   // delete
   $(document).ready(function() {
+
+
+
+
     $('.btn_delete').on('click', function() {
       // alert('Are you sure');
       $('#charity_delete').modal('show');
@@ -462,16 +410,36 @@ include('src/conection.php');
       $('#charity-modal').modal('hide');
     })
 
+    $(document).ajaxComplete(function() {
+      // Call DataTable initialization for #example1 table after data is received
+      $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+
 
 
   })
+  $(document).ajaxComplete(function() {
+    $("#example1").DataTable({
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+
+
+  });
 </script>
-
-
-
-
-<?php
-
-
-
-?>

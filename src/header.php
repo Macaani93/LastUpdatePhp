@@ -17,13 +17,29 @@ if (isset($_SESSION['UserName']) && $_SESSION['UserName'] == true) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>HIILWALAL</title>
+  <style>
+    .my-button-container .btn {
+      margin-right: 10px;
+
+      /* Add right margin between buttons */
+    }
+
+    .my-button-container .btn:first-child {
+      margin-left: 0;
+      background-color: green;
+      padding-right: 10px;
+      /* Remove left margin for the first button */
+    }
+
+    .my-button-container .btn:last-child {
+      margin-right: 0;
+      background-color: red;
+      padding-right: 10px;
+      /* Remove right margin for the last button */
+    }
+  </style>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
-
-
-  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap4.min.css" /> -->
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -48,11 +64,6 @@ if (isset($_SESSION['UserName']) && $_SESSION['UserName'] == true) {
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -242,6 +253,14 @@ if (isset($_SESSION['UserName']) && $_SESSION['UserName'] == true) {
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Charity Report
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="sadaqahRepot.php" class="nav-link">
+                <i class="nav-icon fas fa-chart-pie"></i>
+                <p>
+                  Charity Donated Report
                 </p>
               </a>
             </li>

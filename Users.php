@@ -27,20 +27,14 @@ include("src/conection.php");
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-
-                    <!-- /.card -->
-
                     <div class="card">
                         <div class="card-header">
-                            <!-- <h3 class="card-title">Department </h3> -->
                         </div>
-                        <!-- DEPARTMENT TABLE -->
-                        <!-- /.card-header -->
+
                         <div class="card-body">
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#user-insert">
                                 <i class="fa fa-plus"></i> Add new user
                             </button>
-
                             <table id="example1" class="table table-bordered table-striped mt-3">
                                 <thead>
                                     <tr>
@@ -223,15 +217,12 @@ include("src/conection.php");
         </div>
         <!-- /.container-fluid -->
     </section>
-
-
-    <!-- /.modal-dialog -->
-</div>
-
-<!-- /.modal-dialog -->
 </div>
 
 
+
+
+<?php include("src/footer.php"); ?>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -249,6 +240,11 @@ include("src/conection.php");
 <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page specific script -->
 
 
 
@@ -257,17 +253,6 @@ include("src/conection.php");
 
 
 
-<script>
-
-</script>
-</body>
-
-</html>
-<!-- Bootstrap javascript -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 <script>
     // delete
     $(document).ready(function() {
@@ -281,27 +266,7 @@ include("src/conection.php");
             console.log(data[0]);
             $('#delateID').val(data[0]);
         })
-        new DataTable('#example1', {
-            responsive: true
-        });
-        //DataTable 
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
+
 
 
 
@@ -321,6 +286,30 @@ include("src/conection.php");
         $('.btnclosedelete').click(function() {
             $('#users_delete').modal('hide');
         })
+
+
+
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                //"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+
+
+
     })
 </script>
-<?php include("src/footer.php"); ?>
+
+<!-- Bootstrap javascript -->
